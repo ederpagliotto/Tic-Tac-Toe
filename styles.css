@@ -5,4 +5,26 @@ h1 {
 .container {
     margin: 0 auto;
     max-width: 240px;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(215, 215, 223);
+}
+
+.gameboard {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.celula {
+    background-color: rgb(120, 122, 122);
+    height: 65px;
+    width: 75px;
+    font-size: 30pt;
+    margin: 4px 2px;
+    font-weight: 300pt;
+    padding-top: 10px;
+    border-radius: 3px;
+    text-align: center;
 }
