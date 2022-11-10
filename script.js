@@ -33,7 +33,7 @@ function play(id) {
     turn = playerTurn ? playerO : playerX;       //ternary, if it's true playerO plays, if it's false playerx plays.
     cell.textContent = turn;
     cell.classList.add(turn);
-    playerTurn = !playerTurn;     // if the value is true, change to false and vice-versa.
+    //playerTurn = !playerTurn;     // if the value is true, change to false and vice-versa.
 
    /* if (playerTurn == true) {
         playerTurn = false;
@@ -48,7 +48,42 @@ function play(id) {
 function checkWinner(turn) {
     const winner = combinations.some((comb) => {          // if some item in array returns true all the function returns true
         return comb.every((index) => {
-
+            return cells[index].classList.contains(turn);
         })       //all combinations needs to be true to return true, if one of them be false returns false
-    })
+    });
+
+    if (winner) {
+        finishGame(turn);
+    } else if (checkTie()) {
+        finishGame();
+    } else {
+        playerTurn = !playerTurn;     // if the value is true, change to false and vice-versa.
+    }
+}
+
+function checkTie(){
+    let x = 0;
+    let o = 0;
+    
+    for (index in cells) {
+        if (!isNaN(index)) {             //if index is a number
+            if (cells[index].classList.contains(playerX)) {
+                x++;
+            }
+    
+            if (cells[index].classList.contains(playerO)) {
+                o++;
+            }
+        }
+
+        return x + o === 9 ? true : false;
+    }
+}
+
+function finishGame(winner = null) { //when the function returns a parameter or not we can use parameter = null
+    if (winner) {                       //so that if returns a parameter it will prevail over null value
+        console.log("The winner is " + winner);
+    } else {
+        console.log("It's a tie!");
+    }                                     
 }
