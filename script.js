@@ -75,15 +75,31 @@ function checkTie(){
                 o++;
             }
         }
-
-        return x + o === 9 ? true : false;
     }
+    return x + o === 9 ? true : false;
 }
 
 function finishGame(winner = null) { //when the function returns a parameter or not we can use parameter = null
+    const blackScreen = document.getElementById("black-screen");
+    const h2 = document.createElement("h2");
+    const h3 = document.createElement("h3");
+    let mensagem = null;
+    
+    blackScreen.style.display = "block";
+    blackScreen.appendChild(h2);
+    blackScreen.appendChild(h3);
+    
     if (winner) {                       //so that if returns a parameter it will prevail over null value
-        console.log("The winner is " + winner);
+        h2.innerHTML = `Player ${winner} won!`;
     } else {
-        console.log("It's a tie!");
-    }                                     
+        h2.innerHTML = "It's a tie!";
+    }  
+    
+    let counter = 3;
+
+    setInterval(() => {
+        h3.innerHTML = `Reinitializing in ${counter--}...`; //counter-- to decrease during the interval.
+    }, 1000);
+
+    setTimeout(() => location.reload(), 4000);
 }

@@ -1,5 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     text-align: center;
+}
+
+#black-screen {
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    padding-top: 20px;
+    color: white;
+    display: none;
+    position: absolute;
+    text-align: center;
+    background-color: black;
 }
 
 .container {
