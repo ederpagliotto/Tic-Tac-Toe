@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll(".cell");
 const playerX = "X";
 const playerO = "O";
+let endGame = false;
 
 const combinations = [
     [0,1,2],
@@ -17,7 +18,7 @@ document.addEventListener("click", (event) => {
     if (event.target.matches(".cell")) {
         console.log(event.target.id);
         play(event.target.id, playerO);
-        bot();
+        setTimeout(() => bot(), 500);
     }
 });
 
@@ -32,7 +33,10 @@ function bot(){
     }
 
     const randomPositions = Math.floor(Math.random() * availablePositions.length);
-    play(availablePositions[randomPositions], playerX);
+    console.log(randomPositions);
+    if(!endGame) {
+        play(availablePositions[randomPositions], playerX);
+    }
 }
 
 function play(id, turn) {
@@ -47,7 +51,7 @@ function checkWinner(turn) {
     const winner = combinations.some((comb) => {          // if some item in array returns true all the function returns true
         return comb.every((index) => {
             return cells[index].classList.contains(turn);
-        })       //all combinations needs to be true to return true, if one of them be false returns false
+        });       //all combinations needs to be true to return true, if one of them be false returns false
     });
 
     if (winner) {
@@ -76,10 +80,10 @@ function checkTie(){
 }
 
 function finishGame(winner = null) { //when the function returns a parameter or not we can use parameter = null
+    endGame = true;
     const blackScreen = document.getElementById("black-screen");
     const h2 = document.createElement("h2");
     const h3 = document.createElement("h3");
-    let mensagem = null;
     
     blackScreen.style.display = "block";
     blackScreen.appendChild(h2);
