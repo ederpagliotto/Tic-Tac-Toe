@@ -1,14 +1,6 @@
 const cells = document.querySelectorAll(".cell");
 const playerX = "X";
 const playerO = "O";
-let playerTurn = true;
-
-// Implementing gameboard module
-/*const gameBoardModule = (function() {
-    let gameBoard = [];
-    return {};   //return an object or a function. (turns public)
-})();            // () invoke the function immediately
-*/
 
 const combinations = [
     [0,1,2],
@@ -24,23 +16,29 @@ const combinations = [
 document.addEventListener("click", (event) => {
     if (event.target.matches(".cell")) {
         console.log(event.target.id);
-        play(event.target.id);
+        play(event.target.id, playerO);
+        bot();
     }
 });
 
-function play(id) {
+function bot(){
+    const availablePositions = [];
+    for (index in cells) {
+        if (!isNaN(index)) {
+            if (!cells[index].classList.contains("O") && !cells[index].classList.contains("O")) {
+                availablePositions.push(index);
+            }
+        }
+    }
+
+    const randomPositions = Math.floor(Math.random() * availablePositions.length);
+    play(availablePositions[randomPositions], playerX);
+}
+
+function play(id, turn) {
     const cell = document.getElementById(id);
-    turn = playerTurn ? playerO : playerX;       //ternary, if it's true playerO plays, if it's false playerx plays.
     cell.textContent = turn;
     cell.classList.add(turn);
-    //playerTurn = !playerTurn;     // if the value is true, change to false and vice-versa.
-
-   /* if (playerTurn == true) {
-        playerTurn = false;
-    } else if (playerTurn == false) {
-        playerTurn = true;
-    } */
-
     checkWinner(turn);
 }
 
@@ -56,8 +54,6 @@ function checkWinner(turn) {
         finishGame(turn);
     } else if (checkTie()) {
         finishGame();
-    } else {
-        playerTurn = !playerTurn;     // if the value is true, change to false and vice-versa.
     }
 }
 
@@ -89,7 +85,7 @@ function finishGame(winner = null) { //when the function returns a parameter or 
     blackScreen.appendChild(h2);
     blackScreen.appendChild(h3);
     
-    if (winner) {                       //so that if returns a parameter it will prevail over null value
+    if (winner) {                       //if returns a parameter it will prevail over null value
         h2.innerHTML = `Player ${winner} won!`;
     } else {
         h2.innerHTML = "It's a tie!";
