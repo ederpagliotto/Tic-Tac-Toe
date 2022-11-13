@@ -5,6 +5,7 @@ body {
 
 h1 {
     text-align: center;
+    color: rgb(116, 122, 116);
 }
 
 #black-screen {
@@ -22,10 +23,10 @@ h1 {
 .container {
     margin: 0 auto;
     max-width: 240px;
-    border: 3px solid black;
+    border: 3px solid rgb(73, 71, 71);
     border-radius: 10px;
     padding: 20px;
-    background-color: rgb(215, 215, 223);
+    background-color: rgb(196, 196, 250);
 }
 
 .gameboard {
@@ -35,7 +36,7 @@ h1 {
 }
 
 .cell {
-    background-color: rgb(120, 122, 122);
+    background-color: rgb(235, 238, 238);
     height: 65px;
     width: 75px;
     font-size: 30pt;
