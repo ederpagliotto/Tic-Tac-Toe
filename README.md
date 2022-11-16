@@ -1,2 +1,2 @@
 # Tic-Tac-Toe
-Tic-tac-toe project from TOP JavaScript Session.
+Tic-tac-toe project from TOP JavaScript Foundations Section.
